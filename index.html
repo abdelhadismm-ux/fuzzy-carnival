@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Baladis.com — متجر مغربي عصري للتسوق الذكي. أجهزة ذكية، إكسسوارات، وأدوات منزلية بجودة عالية. الدفع عند الاستلام وتوصيل سريع داخل المغرب." />
+  <meta name="keywords" content="متجر مغربي, تسوق اونلاين, المغرب, smart gadgets, earbuds, smartwatch, الدفع عند الاستلام, Baladis.com" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="Baladis.com — تسوق بذكاء، وعش بأناقة" />
+  <meta property="og:description" content="متجر مغربي عصري. الدفع عند الاستلام وتوصيل سريع داخل المغرب." />
+  <meta property="og:type" content="website" />
+  <title>Baladis.com — تسوق بذكاء، وعش بأناقة | متجر مغربي اونلاين</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-inner container" aria-label="القائمة الرئيسية">
+      <a href="#hero" class="brand" aria-label="Baladis.com الرئيسية">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-name">Baladis<span class="brand-dot">.com</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">الرئيسية</a></li>
+        <li><a href="#featured">منتجات مميزة</a></li>
+        <li><a href="#bestsellers">الأكثر مبيعًا</a></li>
+        <li><a href="#offers">العروض</a></li>
+        <li><a href="#how">كيف أطلب؟</a></li>
+        <li><a href="#reviews">آراء العملاء</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchBtn" aria-label="البحث">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button class="icon-btn" id="cartBtn" aria-label="السلة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.7 8H8.5L6 6Z"/><path d="M6 6 5 2H2"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17.5" cy="20" r="1.6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <a href="#offers" class="btn btn-primary btn-nav">تسوق الآن</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay" hidden>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="البحث في المتجر">
+      <div class="search-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="searchInput" placeholder="ابحث عن منتج... (سماعات، ساعة، شاحن)" autocomplete="off" aria-label="ابحث عن منتج" />
+        <button class="search-close" id="searchClose" aria-label="إغلاق البحث">&times;</button>
+      </div>
+      <div class="search-meta" id="searchMeta"></div>
+      <ul class="search-results" id="searchResults"></ul>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+
+      <div class="hero-visual">
+        <div class="product-frame"></div>
+        <div class="badge b1"><span class="icon">⚡</span> توصيل 24-48 ساعة</div>
+        <div class="badge b2"><span class="icon">🔊</span> مكبر صوت</div>
+        <div class="badge b3"><span class="icon">💡</span> أداة منزلية</div>
+      </div>
+
+      <div class="hero-text">
+        <span class="delivery-tag">✦ الدفع عند الاستلام متوفر</span>
+        <h1>عِش بأناقة <span>مع Baladis.com</span></h1>
+        <p>
+          أحدث الأجهزة الذكية والإكسسوارات وأدوات المنزل العملية، بجودة عالية
+          وأسعار تناسب الجميع، مع الدفع عند الاستلام لكل أنحاء المغرب.
+        </p>
+        <div class="cta-row">
+          <button type="button" data-wa class="btn btn-whatsapp">💬 تواصل معنا عبر واتساب</button>
+          <a href="#featured" class="btn btn-primary">اكتشف المنتجات</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item">
+            <span class="icon">💳</span>
+            <div><div class="label">الدفع عند الاستلام</div><div class="sub">ادفع عند وصول طلبك</div></div>
+          </div>
+          <div class="trust-item">
+            <span class="icon">🚚</span>
+            <div><div class="label">توصيل سريع</div><div class="sub">جميع المدن</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 1. FEATURED PRODUCTS ===== -->
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">منتجات مميزة</span>
+        <h2 class="section-title">اختارت لك <span class="hl">Baladis.com</span> هذه المنتجات</h2>
+      </div>
+      <div class="prod-grid" id="featuredGrid"><!-- products rendered from data/products.js --></div>
+    </div>
+  </section>
+
+  <!-- ===== 2. BEST SELLERS ===== -->
+  <section class="section section-alt" id="bestsellers">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">الأكثر مبيعًا</span>
+        <h2 class="section-title">المنتجات التي يختارها <span class="hl">عملاؤنا</span> أكثر</h2>
+      </div>
+      <div class="prod-grid" id="bestGrid"><!-- products rendered from data/products.js --></div>
+    </div>
+  </section>
+
+  <!-- ===== 3. SPECIAL OFFERS ===== -->
+  <section class="section" id="offers">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">عروض خاصة</span>
+        <h2 class="section-title">عروض <span class="hl">تستحق</span> الفرصة</h2>
+      </div>
+      <div class="offer-banner">
+        <div class="offer-glow" aria-hidden="true"></div>
+        <div class="offer-copy">
+          <span class="section-eyebrow light">عرض افتتاحي</span>
+          <h2>خصم <span class="hl-orange">%20</span> على<br />أول طلبية</h2>
+          <p>استعمل الكود عند تأكيد طلبك واحصل على الشحن مجانًا.</p>
+          <div class="coupon"><span>BALADIS20</span><a href="#featured" class="btn btn-dark">تسوق الآن</a></div>
+        </div>
+        <span class="offer-stamp">عرض ساري حتى نفاد الكمية</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. WHY BALADIS.COM? ===== -->
+  <section class="section section-alt" id="why">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">لماذا Baladis.com؟</span>
+        <h2 class="section-title">نرتقي بتجربة <span class="hl">تسوقك</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="why-ico" aria-hidden="true">💵</span>
+          <h3>الدفع عند الاستلام</h3>
+          <p>افحص طلبك ثم ادفع نقدًا عند الاستلام. لا دفع مسبق لا مخاطرة.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-ico" aria-hidden="true">🚚</span>
+          <h3>توصيل سريع</h3>
+          <p>شحن سريع لكل المدن المغربية، من الدار البيضاء إلى الصحراء.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-ico" aria-hidden="true">🛡️</span>
+          <h3>جودة مضمونة</h3>
+          <p>نختار كل منتج بعناية ونضمن لك الجودة أو استرجاع أموالك.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-ico" aria-hidden="true">💬</span>
+          <h3>دعم مغربي 24/7</h3>
+          <p>فريقنا معك بالدارجة وبالعربية/Français عبر واتساب في أي وقت.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. HOW IT WORKS ===== -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">كيف أطلب؟</span>
+        <h2 class="section-title">ثلاث خطوات <span class="hl">بسيطة</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <span class="step-ico" aria-hidden="true">🛒</span>
+          <h3>اختر المنتج</h3>
+          <p>تصفّح المتجر واختر ما يناسبك من المنتجات المميزة.</p>
+        </div>
+        <div class="step-arrow" aria-hidden="true">←</div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <span class="step-ico" aria-hidden="true">✅</span>
+          <h3>أكد الطلب</h3>
+          <p>أكّد طلبك بضغطة زر، سيتصل بك فريقنا للتأكيد.</p>
+        </div>
+        <div class="step-arrow" aria-hidden="true">←</div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <span class="step-ico" aria-hidden="true">🏠</span>
+          <h3>استلم عند باب منزلك</h3>
+          <p>وصلك الطلب حتى باب دارك وادفع نقدًا عند الاستلام.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. CUSTOMER REVIEWS ===== -->
+  <section class="section section-alt" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">آراء العملاء</span>
+        <h2 class="section-title">ماذا قال <span class="hl">عملاؤنا</span> بعد الاستلام؟</h2>
+        <p class="section-note">سنعرض هنا قريبًا آراء حقيقية موثّقة من عملائنا بعد كل طلب.</p>
+      </div>
+      <div class="rev-grid" id="reviewsGrid">
+        <article class="rev-card rev-placeholder">
+          <div class="rev-stars" aria-hidden="true">★★★★★</div>
+          <p>مراجعة حقيقية للعميل ستُعرض هنا.</p>
+          <footer class="rev-author"><span class="rev-avatar">؟</span><div><strong>اسم العميل</strong><span>المدينة</span></div></footer>
+        </article>
+        <article class="rev-card rev-placeholder">
+          <div class="rev-stars" aria-hidden="true">★★★★★</div>
+          <p>مراجعة حقيقية للعميل ستُعرض هنا.</p>
+          <footer class="rev-author"><span class="rev-avatar">؟</span><div><strong>اسم العميل</strong><span>المدينة</span></div></footer>
+        </article>
+        <article class="rev-card rev-placeholder">
+          <div class="rev-stars" aria-hidden="true">★★★★★</div>
+          <p>مراجعة حقيقية للعميل ستُعرض هنا.</p>
+          <footer class="rev-author"><span class="rev-avatar">؟</span><div><strong>اسم العميل</strong><span>المدينة</span></div></footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="container faq-container">
+      <div class="section-head">
+        <span class="section-eyebrow">الأسئلة الشائعة</span>
+        <h2 class="section-title">عندك <span class="hl">سؤال؟</span></h2>
+      </div>
+      <div class="faq-list" id="faqList">
+        <details class="faq-item" open>
+          <summary>هل الدفع عند الاستلام متوفر في كل المغرب؟<span class="faq-chev">+</span></summary>
+          <p>نعم، الدفع عند الاستلام متوفر في جميع المدن المغربية. يمكنك فحص طلبك قبل الدفع.</p>
+        </details>
+        <details class="faq-item">
+          <summary>كم يستغرق التوصيل؟<span class="faq-chev">+</span></summary>
+          <p>التوصيل داخل المدن الكبرى يستغرق 24 إلى 48 ساعة، وباقي المدن من 2 إلى 4 أيام عمل.</p>
+        </details>
+        <details class="faq-item">
+          <summary>كيف أطلب عبر واتساب؟<span class="faq-chev">+</span></summary>
+          <p>اضغط زر "تواصل معنا عبر واتساب" واكتب اسم المنتج ومدينتك، وسيتولى فريقنا الباقي.</p>
+        </details>
+        <details class="faq-item">
+          <summary>هل يمكنني استرجاع المنتج؟<span class="faq-chev">+</span></summary>
+          <p>نعم، إذا وصل المنتج معيبًا أو مختلفًا عن الوصف، يمكنك إرجاعه خلال 7 أيام من الاستلام.</p>
+        </details>
+        <details class="faq-item">
+          <summary>كيف أعرف أن المنتج أصلي؟<span class="faq-chev">+</span></summary>
+          <p>نختار منتجاتنا من موردين موثوقين ونفحص الجودة قبل الشحن لضمان أنك تستلم منتجًا مطابقًا للوصف.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. FINAL CTA ===== -->
+  <section class="section final-cta" id="final-cta">
+    <div class="container">
+      <div class="final-box">
+        <div class="final-glow" aria-hidden="true"></div>
+        <h2>جاهز تشوف <span class="hl-orange">المنتجات</span> ببنفسك؟</h2>
+        <p>اطلب الآن وادفع عند الاستلام — بلا مخاطرة وبلا دفع مسبق.</p>
+        <div class="final-actions">
+          <a href="#featured" class="btn btn-primary btn-lg">اكتشف المنتجات</a>
+          <button type="button" data-wa class="btn btn-whatsapp btn-lg">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.1.3.6 1.1 1.4 1.8.9.9 1.7 1.2 2 1.3.3.1.5.1.6-.1l.7-.9c.2-.2.3-.3.6-.2l2.1 1c.3.2.5.3.6.4.1.2.1.7-.1 1.1Z"/></svg>
+            تواصل معنا
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-col footer-about">
+        <a href="#hero" class="brand">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="brand-name">Baladis<span class="brand-dot">.com</span></span>
+        </a>
+        <p>متجر مغربي عصري يقدّم أحدث المنتجات الذكية وأدوات الحياة اليومية بجودة عالية، مع الدفع عند الاستلام وتوصيل سريع لكل أنحاء المملكة.</p>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#hero">الرئيسية</a></li>
+          <li><a href="#featured">منتجات مميزة</a></li>
+          <li><a href="#offers">العروض</a></li>
+          <li><a href="#why">لماذا Baladis.com؟</a></li>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>المساعدة والدعم</h4>
+        <ul>
+          <li><a href="#how">الشحن والتوصيل</a></li>
+          <li><a href="#faq">سياسة الإرجاع</a></li>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+          <li><button type="button" class="link-btn" data-wa>تواصل معنا</button></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <ul class="contact-list">
+          <li>📍 الدار البيضاء، المغرب</li>
+          <li>📞 <a href="tel:+212600000000">+212 6 00 00 00 00</a></li>
+          <li>✉️ <a href="mailto:hello@baladis.com">hello@baladis.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 <span class="hl">Baladis.com</span>. جميع الحقوق محفوظة.</p>
+      <div class="payments">💳 الدفع: نقدًا عند الاستلام — CMI — Visa — Mastercard</div>
+    </div>
+  </footer>
+
+  <!-- ===== CHECKOUT VIEW ===== -->
+  <section class="checkout" id="checkout" aria-hidden="true" hidden>
+    <div class="container">
+      <button type="button" class="checkout-back" id="checkoutBack" aria-label="العودة للسلة">→ العودة إلى السلة</button>
+
+      <div class="checkout-wrap">
+        <!-- Order summary -->
+        <div class="checkout-col checkout-summary">
+          <h2 class="checkout-title">ملخص طلبك</h2>
+          <ul class="checkout-items" id="checkoutItems"></ul>
+          <div class="checkout-lines">
+            <div class="co-line"><span>المجموع الفرعي</span><span id="coSubtotal">0 درهم</span></div>
+            <div class="co-line"><span>التوصيل</span><span id="coShipping">—</span></div>
+            <div class="co-line co-total"><span>المجموع الكلي</span><span id="coTotal">0 درهم</span></div>
+          </div>
+        </div>
+
+        <!-- Checkout form -->
+        <div class="checkout-col">
+          <h2 class="checkout-title">معلومات التوصيل</h2>
+          <form id="checkoutForm" novalidate>
+            <label class="field">
+              <span>الاسم الكامل <em>*</em></span>
+              <input type="text" id="coName" name="name" autocomplete="name" placeholder="مثال: أحمد العلوي" />
+              <small class="field-err"></small>
+            </label>
+
+            <label class="field">
+              <span>رقم الهاتف المغربي <em>*</em></span>
+              <input type="tel" id="coPhone" name="phone" inputmode="tel" placeholder="06XXXXXXXX" />
+              <small class="field-err"></small>
+            </label>
+
+            <label class="field">
+              <span>المدينة <em>*</em></span>
+              <input type="text" id="coCity" name="city" autocomplete="address-level2" placeholder="مثال: الدار البيضاء" />
+              <small class="field-err"></small>
+            </label>
+
+            <label class="field">
+              <span>العنوان الكامل <em>*</em></span>
+              <input type="text" id="coAddress" name="address" autocomplete="street-address" placeholder="الشارع، رقم المنزل، الحي..." />
+              <small class="field-err"></small>
+            </label>
+
+            <label class="field">
+              <span>ملاحظات على الطلب (اختياري)</span>
+              <textarea id="coNotes" name="notes" rows="2" placeholder="أي تفاصيل إضافية عن عنوانك أو وقت الاستلام..."></textarea>
+            </label>
+          </form>
+
+          <h2 class="checkout-title">طريقة الدفع</h2>
+          <div class="pay-methods" id="payMethods" role="radiogroup" aria-label="طريقة الدفع"></div>
+          <div class="pay-online-placeholder" id="onlinePlaceholder" hidden>
+            <p><strong>الدفع الإلكتروني قريبًا</strong></p>
+            <p>بوابة الدفع الإلكتروني لم تُربط بعد (بانتظار بيانات المزود). في الوقت الحالي، استعمل الدفع عند الاستلام.</p>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-lg checkout-submit" id="checkoutSubmit">
+            تأكيد الطلب — الدفع عند الاستلام
+          </button>
+          <p class="checkout-form-err" id="checkoutFormErr" role="alert"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONFIRMATION VIEW ===== -->
+  <section class="confirmation" id="confirmation" aria-hidden="true" hidden>
+    <div class="container confirmation-inner">
+      <span class="conf-ico" aria-hidden="true">✅</span>
+      <h1 class="conf-title">تم استلام طلبك بنجاح</h1>
+      <p class="conf-sub" id="confMsg">شكرًا لثقتك! سنتواصل معك قريبًا لتأكيد طلبك.</p>
+
+      <div class="conf-card">
+        <div class="conf-row"><span>رقم الطلب</span><strong id="confOrderId">—</strong></div>
+        <div class="conf-row"><span>طريقة الدفع</span><strong id="confPayMethod">—</strong></div>
+        <div class="conf-row"><span>المبلغ الكلي</span><strong id="confTotal">—</strong></div>
+        <div class="conf-row"><span>حالة الطلب</span><strong class="conf-status" id="confStatus">—</strong></div>
+        <div class="conf-row"><span>التوصيل</span><strong id="confCity">—</strong></div>
+      </div>
+
+      <ul class="conf-items" id="confItems"></ul>
+
+      <div class="conf-actions">
+        <a href="#hero" class="btn btn-outline btn-lg" id="confBackHome">العودة إلى المتجر</a>
+        <button type="button" class="btn btn-whatsapp btn-lg" data-wa>التواصل للاستفسار</button>
+      </div>
+      <p class="conf-note" id="confPayPlaceholder"></p>
+    </div>
+  </section>
+
+  <!-- ===== STICKY MOBILE CTA ===== -->
+  <div class="sticky-cta" id="stickyCta">
+    <span class="sticky-label">اطلب الآن — الدفع عند الاستلام</span>
+    <a href="#featured" class="btn btn-primary btn-sticky">تسوق الآن</a>
+  </div>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="cart-head">
+      <h3 id="cartTitle">سلة المشتريات <span class="cart-head-count" id="cartHeadCount">(0)</span></h3>
+      <button class="cart-close" id="cartClose" aria-label="إغلاق السلة">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <span class="cart-empty-ico" aria-hidden="true">🛒</span>
+        <p>سلتك فارغة حالياً.</p>
+        <p class="cart-empty-sub">أضف منتجات لتبدأ طلبك.</p>
+      </div>
+      <ul class="cart-items" id="cartItems"></ul>
+    </div>
+    <div class="cart-foot" id="cartFoot">
+      <div class="cart-total">
+        <span>المجموع</span>
+        <span><b class="cart-total-amount" id="cartTotal">0</b> <span class="mad">درهم</span></span>
+      </div>
+      <button class="btn btn-primary cart-checkout" id="cartCheckout" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        متابعة الطلب
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== WHATSAPP FLOATING BUTTON ===== -->
+  <button type="button" data-wa-float class="wa-float" aria-label="تواصل معنا عبر واتساب">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.1.3.6 1.1 1.4 1.8.9.9 1.7 1.2 2 1.3.3.1.5.1.6-.1l.7-.9c.2-.2.3-.3.6-.2l2.1 1c.3.2.5.3.6.4.1.2.1.7-.1 1.1Z"/></svg>
+    <span class="wa-tooltip">تواصل معنا</span>
+  </button>
+
+  <!-- Product data + rendering (loads before script.js so cards exist first) -->
+  <script src="data/products.js"></script>
+
+  <!-- Payment abstraction layer (classic scripts -> file:// compatible, no secrets) -->
+  <script src="payment/payment-config.js"></script>
+  <script src="payment/payment-provider.js"></script>
+  <script src="payment/cod-provider.js"></script>
+  <script src="payment/online-payment-provider.js"></script>
+
+  <!-- App scripts -->
+  <script src="script.js"></script>
+  <script src="checkout.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة المتجر — Baladis.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #ff6a00;
+    --orange-2: #f25300;
+    --green: #25d366;
+    --black: #0a0a0a;
+    --black-2: #161616;
+    --line: rgba(255, 255, 255, 0.1);
+    --gray: #a3a3a3;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Cairo", "Segoe UI", Arial, sans-serif;
+    background: var(--black);
+    color: #fff;
+    line-height: 1.6;
+  }
+  .wrap { width: min(1180px, 94%); margin: 0 auto; }
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    height: 70px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3%;
+  }
+  .topbar .brand { font-size: 24px; font-weight: 900; }
+  .brand-dot { color: var(--orange); }
+  .topbar a.back {
+    color: var(--gray); text-decoration: none; font-weight: 700; font-size: 14px;
+  }
+  .topbar a.back:hover { color: var(--orange); }
+  header.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 26px 0 14px; flex-wrap: wrap; }
+  h1 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; display: flex; align-items: center; gap: 10px; }
+  h1 small { color: var(--gray); font-weight: 600; font-size: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border: none; cursor: pointer; font-family: inherit; font-weight: 800;
+    font-size: 15px; border-radius: 12px; padding: 11px 20px;
+    transition: transform .2s, box-shadow .2s, background .2s;
+    text-decoration: none;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--orange), var(--orange-2)); color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-outline { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--line); }
+  .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+  .btn-danger { background: rgba(239,68,68,.15); color: #ff6a6a; border: 1px solid rgba(239,68,68,.4); }
+  .btn-danger:hover { background: rgba(239,68,68,.28); }
+  .btn-sm { padding: 7px 14px; font-size: 13px; border-radius: 10px; }
+  .btn-block { width: 100%; }
+
+  .status {
+    display: none; padding: 12px 16px; border-radius: 12px; margin-bottom: 16px;
+    font-weight: 700; font-size: 14px;
+  }
+  .status.show { display: block; }
+  .status.ok { background: rgba(37,211,102,.12); color: var(--green); border: 1px solid rgba(37,211,102,.4); }
+  .status.err { background: rgba(239,68,68,.12); color: #ff6a6a; border: 1px solid rgba(239,68,68,.4); }
+
+  table { width: 100%; border-collapse: collapse; background: var(--black-2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  th, td { padding: 12px 14px; text-align: right; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: middle; }
+  th { background: rgba(255,255,255,.04); font-size: 13px; color: var(--gray); font-weight: 800; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  tr:hover td { background: rgba(255,106,0,.04); }
+  td .emoji { font-size: 26px; }
+  td .old { color: var(--gray); text-decoration: line-through; font-size: 12px; }
+  td .cur { color: var(--orange); font-weight: 900; }
+  td .stock { font-weight: 800; }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; background: rgba(255,255,255,.08); border: 1px solid var(--line); }
+  .tag.feat { background: rgba(255,106,0,.15); border-color: rgba(255,106,0,.4); color: #ffb066; }
+  .tag.hot { background: rgba(239,68,68,.15); border-color: rgba(239,68,68,.4); color: #ff9a9a; }
+  td.actions { white-space: nowrap; }
+  td.actions .btn { margin-inline-start: 6px; }
+
+  .cards { display: grid; gap: 14px; }
+  .pcard {
+    display: grid; grid-template-columns: 48px 1.4fr 1fr auto;
+    gap: 14px; align-items: center;
+    background: var(--black-2); border: 1px solid var(--line);
+    border-radius: 14px; padding: 12px 16px;
+  }
+  .pcard .emoji { font-size: 28px; text-align: center; }
+  .pcard .name { font-weight: 800; font-size: 15px; }
+  .pcard .sub { color: var(--gray); font-size: 12px; }
+  .pcard .price .cur { color: var(--orange); font-weight: 900; }
+  .pcard .price .old { color: var(--gray); text-decoration: line-through; font-size: 12px; margin-inline-start: 6px; }
+  .pcard .tools { display: flex; gap: 6px; }
+
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,.72); backdrop-filter: blur(3px);
+    display: none; align-items: flex-start; justify-content: center;
+    padding: 5vh 16px 40px; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    width: min(640px, 100%);
+    background: linear-gradient(170deg, #1c1c1c, #0b0b0b);
+    border: 1px solid rgba(255,106,0,.3);
+    border-radius: 18px; padding: 24px; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  }
+  .modal h2 { font-size: 20px; font-weight: 900; margin-bottom: 18px; }
+  .modal h2 em { color: var(--orange); font-style: normal; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+  .field { display: block; margin-bottom: 14px; }
+  .field > span { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: var(--gray); }
+  .field input, .field select, .field textarea {
+    width: 100%; background: rgba(255,255,255,.06);
+    border: 1px solid var(--line); border-radius: 10px;
+    color: #fff; padding: 10px 12px; font-size: 14px; font-family: inherit;
+  }
+  .field textarea { resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--orange);
+  }
+  .check { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; cursor: pointer; padding: 8px 0; }
+  .check input { width: 17px; height: 17px; accent-color: var(--orange); }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; }
+  .empty { text-align: center; color: var(--gray); padding: 50px 0; }
+  .empty span { font-size: 46px; display: block; margin-bottom: 10px; }
+
+  @media (max-width: 720px) {
+    .pcard { grid-template-columns: 40px 1fr; }
+    .pcard .price { grid-column: 2; }
+    .pcard .tools { grid-column: 1 / -1; }
+    .grid2, .grid4 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">Baladis<span class="brand-dot">.com</span></span>
+  <a class="back" href="/">→ عرض المتجر</a>
+</div>
+
+<div class="wrap">
+  <header class="toolbar">
+    <h1>لوحة التحكم <small id="countLabel"></small></h1>
+    <button class="btn btn-primary" id="addBtn">＋ إضافة منتج جديد</button>
+  </header>
+
+  <div class="status" id="status"></div>
+
+  <div class="cards" id="list"></div>
+  <div class="empty" id="empty" hidden><span>📦</span>لا توجد منتجات بعد. اضغط "إضافة منتج جديد" للبدء.</div>
+</div>
+
+<div class="modal-overlay" id="overlay">
+  <div class="modal">
+    <h2><em id="formTitle">إضافة منتج</em></h2>
+    <form id="form" onsubmit="return false;">
+      <div class="grid2">
+        <label class="field"><span>اسم المنتج *</span><input type="text" id="fName" required></label>
+        <label class="field"><span>المعرف (id) *</span><input type="text" id="fId" required placeholder="مثال: new-product"></label>
+      </div>
+      <div class="grid4">
+        <label class="field"><span>الثمن (درهم)</span><input type="number" id="fPrice" min="0" step="1"></label>
+        <label class="field"><span>الثمن القديم</span><input type="number" id="fOld" min="0" step="1" placeholder="اختياري"></label>
+        <label class="field"><span>المخزون</span><input type="number" id="fStock" min="0" step="1" value="10"></label>
+        <label class="field"><span>الإيموجي</span><input type="text" id="fEmoji" placeholder="📦"></label>
+      </div>
+      <div class="grid2">
+        <label class="field"><span>الفئة</span><input type="text" id="fCat" placeholder="مثال: سماعات"></label>
+        <label class="field"><span>شارة (badge)</span><input type="text" id="fBadge" placeholder="جديد / الأكثر مبيعًا..."></label>
+      </div>
+      <label class="field"><span>الوصف</span><textarea id="fDesc" rows="2" placeholder="وصف قصير للمنتج"></textarea></label>
+      <div class="grid2">
+        <label class="field"><span>الصورة (assets/images/products/...)</span><input type="text" id="fImage" placeholder="name.svg — فاضي = لين generate"></label>
+        <label class="field"><span>لون الخلفية (tint 0-360)</span><input type="number" id="fTint" min="0" max="360" step="1" value="180"></label>
+      </div>
+      <div class="grid2">
+        <label class="field"><span>القسم</span>
+          <select id="fSection">
+            <option value="featured">منتجات مميزة</option>
+            <option value="bestseller">الأكثر مبيعًا</option>
+          </select>
+        </label>
+        <div></div>
+      </div>
+      <div class="grid2">
+        <label class="check"><input type="checkbox" id="fFeatured" checked> في قسم مميز</label>
+        <label class="check"><input type="checkbox" id="fHot"> تمييز أحمر (الأكثر مبيعًا)</label>
+      </div>
+    </form>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="cancelBtn">إلغاء</button>
+      <button class="btn btn-primary" id="saveBtn">حفظ المنتج</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var list = [];
+  var editingId = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var status = $("status");
+  var overlay = $("overlay");
+
+  function flash(msg, ok) {
+    status.textContent = msg;
+    status.className = "status show " + (ok ? "ok" : "err");
+    clearTimeout(flash._t);
+    flash._t = setTimeout(function () { status.className = "status"; }, 4000);
+  }
+
+  function render() {
+    $("countLabel").textContent = "(" + list.length + " منتج)";
+    var host = $("list");
+    host.innerHTML = "";
+    $("empty").hidden = list.length > 0;
+    list.forEach(function (p, i) {
+      var el = document.createElement("div");
+      el.className = "pcard";
+      el.innerHTML =
+        '<span class="emoji">' + (p.emoji || "📦") + "</span>" +
+        '<div><div class="name">' + esc(p.name) +
+          (p.badge ? ' <span class="tag' + (p.hot ? ' hot' : '') + '">' + esc(p.badge) + "</span>" : "") +
+          (p.section === "bestseller" ? ' <span class="tag feat">الأكثر مبيعًا</span>' : "") +
+          "</div>" +
+          '<div class="sub">' + esc(p.category || "") + " • مخزون: " + (p.stock != null ? p.stock : "—") + "</div>" +
+        "</div>" +
+        '<div class="price"><span class="cur">' + esc(p.price != null ? p.price : "—") + " درهم</span>" +
+          (p.oldPrice ? ' <span class="old">' + esc(p.oldPrice) + "</span>" : "") + "</div>" +
+        '<div class="tools">' +
+          '<button class="btn btn-outline btn-sm" data-edit="' + i + '">تعديل</button>' +
+          '<button class="btn btn-danger btn-sm" data-del="' + i + '">حذف</button>' +
+        "</div>";
+      host.appendChild(el);
+    });
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function openForm(p) {
+    editingId = p ? p.id : null;
+    $("formTitle").textContent = p ? "تعديل: " + p.name : "إضافة منتج";
+    var blank = { name: "", id: "", price: "", oldPrice: "", stock: 10, emoji: "📦", category: "", badge: "", description: "", image: "", tint: 180, section: "featured", featured: true, hot: false };
+    var d = p || blank;
+    $("fName").value = d.name || "";
+    $("fId").value = d.id || "";
+    $("fPrice").value = d.price != null ? d.price : "";
+    $("fOld").value = d.oldPrice != null ? d.oldPrice : "";
+    $("fStock").value = d.stock != null ? d.stock : 10;
+    $("fEmoji").value = d.emoji || "📦";
+    $("fCat").value = d.category || "";
+    $("fBadge").value = d.badge || "";
+    $("fDesc").value = d.description || "";
+    $("fImage").value = (d.image && d.image.indexOf("assets/images/products/") === 0 ? d.image.slice("assets/images/products/".length) : d.image || "");
+    $("fTint").value = d.tint != null ? d.tint : 180;
+    $("fSection").value = d.section === "bestseller" ? "bestseller" : "featured";
+    $("fFeatured").checked = d.featured !== false;
+    $("fHot").checked = !!d.hot;
+    overlay.classList.add("open");
+    $("fName").focus();
+  }
+
+  function saveAll(cb) {
+    fetch("/api/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(list),
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (r.ok && j.ok) { flash("تم الحفظ: " + j.count + " منتج", true); if (cb) cb(j); }
+        else { flash("فشل الحفظ: " + (j.error || r.status), false); }
+      });
+    }).catch(function () { flash("فشل الاتصال بالخادم", false); });
+  }
+
+  $("addBtn").addEventListener("click", function () { openForm(null); });
+  $("cancelBtn").addEventListener("click", function () { overlay.classList.remove("open"); });
+
+  $("saveBtn").addEventListener("click", function () {
+    var name = $("fName").value.trim();
+    var id = $("fId").value.trim().toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-");
+    if (!name || !id) { flash("اسم المنتج والمعرف ضروريين", false); return; }
+
+    var image = $("fImage").value.trim();
+    if (!image) image = id.replace(/-+/g, "-") + ".svg";
+    if (image.indexOf("assets/") !== 0) image = "assets/images/products/" + image.replace(/^assets\/images\/products\//, "");
+
+    var obj = {
+      id: id,
+      name: name,
+      price: parseInt($("fPrice").value, 10) || 0,
+      oldPrice: $("fOld").value !== "" ? parseInt($("fOld").value, 10) : null,
+      image: image,
+      images: [],
+      category: $("fCat").value.trim(),
+      description: $("fDesc").value.trim(),
+      stock: parseInt($("fStock").value, 10),
+      badge: $("fBadge").value.trim(),
+      featured: $("fFeatured").checked,
+      hot: $("fHot").checked,
+      emoji: $("fEmoji").value.trim() || "📦",
+      tint: parseInt($("fTint").value, 10) || 180,
+      section: $("fSection").value,
+    };
+
+    var idx = editingId ? list.findIndex(function (x) { return x.id === editingId; }) : -1;
+    if (idx >= 0) list[idx] = obj; else list.push(obj);
+    overlay.classList.remove("open");
+    render();
+    saveAll();
+  });
+
+  $("list").addEventListener("click", function (e) {
+    var ed = e.target.closest("[data-edit]");
+    var del = e.target.closest("[data-del]");
+    if (ed) { openForm(list[+ed.dataset.edit]); return; }
+    if (del) {
+      var i = +del.dataset.del;
+      var p = list[i];
+      if (!confirm("تبغي تمسح \u201c" + p.name + "\u201d؟")) return;
+      list.splice(i, 1);
+      render();
+      saveAll();
+    }
+  });
+
+  fetch("/api/products").then(function (r) { return r.json(); }).then(function (data) {
+    list = Array.isArray(data) ? data : [];
+    render();
+  }).catch(function () { flash("فشل تحميل المنتجات من الخادم", false); });
+})();
+</script>
+</body>
+</html>

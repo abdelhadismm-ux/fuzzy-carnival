@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="520" viewBox="0 0 600 520" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="hsl(200,60%,28%)"/>
+      <stop offset="1" stop-color="#0c0c0c"/>
+    </linearGradient>
+    <radialGradient id="r" cx="50%" cy="30%" r="65%">
+      <stop offset="0" stop-color="hsla(200,80%,55%,0.45)"/>
+      <stop offset="1" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="520" fill="url(#g)"/>
+  <rect width="600" height="520" fill="url(#r)"/>
+  <rect x="30" y="30" width="540" height="460" rx="18" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
+  <circle cx="300" cy="230" r="105" fill="rgba(10,10,10,0.35)" stroke="rgba(255,106,0,0.5)" stroke-width="2"/>
+  <text x="300" y="238" font-family="Arial, sans-serif" font-size="120" text-anchor="middle" dominant-baseline="central" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.28">S</text>
+  <text x="300" y="255" font-family="Cairo, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#ffffff">ساعة ذكية رياضية</text>
+  <text x="300" y="420" font-family="Cairo, Arial, sans-serif" font-size="18" font-weight="900" text-anchor="middle" fill="#ff6a00">BALADIS</text>
+</svg>
